@@ -1,0 +1,336 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://assets/fonts/premadeFonts/rulesLabel.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/singleTiles/heart/Heart.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Exit.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/monsters/demon/Demon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://player/scenes/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/Exit.gd" type="Script" id=7]
+[ext_resource path="res://levels/level1/Node2D.gd" type="Script" id=8]
+[ext_resource path="res://assets/fonts/bruteFonts/EightBitDragon-anqx.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://ux/botao_transparente.tres" type="StyleBox" id=10]
+[ext_resource path="res://0x72_DungeonTilesetII_v1.4/frames/floor_ladder.png" type="Texture" id=11]
+[ext_resource path="res://assets/tilesets/premadeTilesets/NoCollisionTiles.tres" type="TileSet" id=12]
+[ext_resource path="res://assets/tilesets/premadeTilesets/BasicTiles.tres" type="TileSet" id=13]
+[ext_resource path="res://assets/singleTiles/Crate/Crate.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/monsters/goblin/Goblin.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/singleTiles/Mureta.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/singleTiles/heart/ui_heart_full.png" type="Texture" id=17]
+[ext_resource path="res://0x72_DungeonTilesetII_v1.4/frames/doors_all.png" type="Texture" id=18]
+[ext_resource path="res://assets/Wall.tscn" type="PackedScene" id=19]
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 9 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 1, 0, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 1, 0, 0, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Level2" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="floor" type="TileMap" parent="."]
+position = Vector2( 1, 0 )
+scale = Vector2( 4, 4 )
+tile_set = ExtResource( 13 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 0
+format = 1
+tile_data = PoolIntArray( 0, 14, 0, 1, 14, 0, 2, 14, 0, 3, 14, 0, 4, 14, 0, 5, 14, 0, 6, 14, 0, 7, 14, 0, 8, 14, 0, 9, 14, 0, 10, 14, 0, 11, 14, 0, 12, 14, 0, 13, 14, 0, 14, 14, 0, 15, 14, 0, 65536, 14, 0, 65537, 14, 0, 65538, 14, 0, 65539, 14, 0, 65540, 14, 0, 65541, 14, 0, 65542, 14, 0, 65543, 14, 0, 65544, 14, 0, 65545, 14, 0, 65546, 14, 0, 65547, 14, 0, 65548, 14, 0, 65549, 14, 0, 65550, 14, 0, 65551, 14, 0, 131072, 14, 0, 131073, 14, 0, 131074, 14, 0, 131075, 14, 0, 131076, 14, 0, 131077, 14, 0, 131078, 14, 0, 131079, 14, 0, 131080, 14, 0, 131081, 14, 0, 131082, 14, 0, 131083, 14, 0, 131084, 14, 0, 131085, 14, 0, 131086, 14, 0, 131087, 14, 0, 196608, 14, 0, 196609, 14, 0, 196610, 14, 0, 196611, 14, 0, 196612, 14, 0, 196613, 14, 0, 196614, 14, 0, 196615, 14, 0, 196616, 14, 0, 196617, 14, 0, 196618, 14, 0, 196619, 14, 0, 196620, 14, 0, 196621, 14, 0, 196622, 14, 0, 196623, 14, 0, 262144, 14, 0, 262145, 14, 0, 262146, 14, 0, 262147, 14, 0, 262148, 14, 0, 262149, 14, 0, 262150, 14, 0, 262151, 14, 0, 262152, 14, 0, 262153, 14, 0, 262154, 14, 0, 262155, 14, 0, 262156, 14, 0, 262157, 14, 0, 262158, 14, 0, 262159, 14, 0, 327680, 14, 0, 327681, 14, 0, 327682, 14, 0, 327683, 14, 65537, 327684, 14, 65537, 327685, 14, 0, 327686, 14, 0, 327687, 14, 0, 327688, 14, 0, 327689, 14, 0, 327690, 14, 0, 327691, 14, 0, 327692, 14, 0, 327693, 14, 0, 327694, 14, 0, 327695, 14, 0, 393216, 14, 0, 393217, 14, 0, 393218, 14, 0, 393219, 14, 1, 393220, 14, 65537, 393221, 14, 0, 393222, 14, 0, 393223, 14, 0, 393224, 14, 0, 393225, 14, 0, 393226, 14, 0, 393227, 14, 0, 393228, 14, 0, 393229, 14, 0, 393230, 14, 0, 393231, 14, 0, 458752, 14, 0, 458753, 14, 0, 458754, 14, 65536, 458755, 14, 0, 458756, 14, 0, 458757, 14, 0, 458758, 14, 0, 458759, 14, 131072, 458760, 14, 131073, 458761, 14, 0, 458762, 14, 0, 458763, 14, 0, 458764, 14, 0, 458765, 14, 0, 458766, 14, 0, 458767, 14, 0, 524288, 14, 0, 524289, 14, 0, 524290, 14, 0, 524291, 14, 0, 524292, 14, 1, 524293, 14, 2, 524294, 14, 65538, 524295, 14, 65536, 524296, 14, 0, 524297, 14, 0, 524298, 14, 0, 524299, 14, 0, 524300, 14, 0, 524301, 14, 0, 524302, 14, 0, 524303, 14, 0, 589824, 14, 0, 589825, 14, 0, 589826, 14, 0, 589827, 14, 0, 589828, 14, 0, 589829, 14, 0, 589830, 14, 0, 589831, 14, 0, 589832, 14, 0, 589833, 14, 0, 589834, 14, 0, 589835, 14, 0, 589836, 14, 0, 589837, 14, 0, 589838, 14, 0, 589839, 14, 0, 655360, 14, 0, 655361, 14, 0, 655362, 14, 0, 655363, 14, 0, 655364, 14, 0, 655365, 14, 0, 655366, 14, 0, 655367, 14, 0, 655368, 14, 0, 655369, 14, 0, 655370, 14, 0, 655371, 14, 0, 655372, 14, 0, 655373, 14, 0, 655374, 14, 0, 655375, 14, 0, 720896, 14, 0, 720897, 14, 0, 720898, 14, 0, 720899, 14, 0, 720900, 14, 0, 720901, 14, 0, 720902, 14, 0, 720903, 14, 0, 720904, 14, 0, 720905, 14, 0, 720906, 14, 0, 720907, 14, 0, 720908, 14, 0, 720909, 14, 0, 720910, 14, 0, 720911, 14, 0, 786432, 14, 0, 786433, 14, 0, 786434, 14, 0, 786435, 14, 0, 786436, 14, 0, 786437, 14, 0, 786438, 14, 0, 786439, 14, 0, 786440, 14, 0, 786441, 14, 0, 786442, 14, 0, 786443, 14, 0, 786444, 14, 0, 786445, 14, 0, 786446, 14, 0, 786447, 14, 0 )
+
+[node name="Wall" parent="." instance=ExtResource( 19 )]
+tile_data = PoolIntArray( 65535, 0, 0, 131071, 0, 0, 196607, 0, 0, 262143, 0, 0, 327679, 0, 0, 393215, 0, 0, 458751, 0, 0, 524287, 0, 0, 589823, 0, 0, 655359, 0, 0, 720895, 0, 0, 786431, 0, 0, 851967, 0, 0 )
+
+[node name="WallNoCollision" type="TileMap" parent="."]
+scale = Vector2( 4, 4 )
+tile_set = ExtResource( 12 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 0
+format = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="door" parent="." instance=ExtResource( 5 )]
+position = Vector2( 704, 128 )
+collision_layer = 0
+
+[node name="Exit" parent="." instance=ExtResource( 3 )]
+position = Vector2( 544, 96 )
+collision_layer = 0
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="Exit"]
+modulate = Color( 1, 1, 0, 1 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 224, 265 )
+collision_layer = 32769
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 704, 416 )
+current = true
+zoom = Vector2( 1.5, 1.5 )
+
+[node name="Background" type="Panel" parent="."]
+margin_left = 1064.0
+margin_top = -8.0
+margin_right = 1432.0
+margin_bottom = 441.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 358.0
+margin_bottom = 439.0
+
+[node name="TextEdit" type="TextEdit" parent="Background/MarginContainer"]
+margin_right = 348.0
+margin_bottom = 429.0
+custom_fonts/font = ExtResource( 1 )
+show_line_numbers = true
+wrap_enabled = true
+
+[node name="HScrollBar2" type="HScrollBar" parent="Background/MarginContainer/TextEdit"]
+visible = false
+margin_top = 417.0
+margin_right = 336.0
+margin_bottom = 429.0
+max_value = 0.0
+
+[node name="VScrollBar2" type="VScrollBar" parent="Background/MarginContainer/TextEdit"]
+visible = false
+margin_left = 336.0
+margin_right = 348.0
+margin_bottom = 429.0
+max_value = 0.0
+
+[node name="Timer4" type="Timer" parent="Background/MarginContainer/TextEdit"]
+wait_time = 0.65
+
+[node name="Timer5" type="Timer" parent="Background/MarginContainer/TextEdit"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Timer6" type="Timer" parent="Background/MarginContainer/TextEdit"]
+wait_time = 0.05
+
+[node name="PopupMenu2" type="PopupMenu" parent="Background/MarginContainer/TextEdit"]
+items = [ "Undo", null, 0, false, false, 5, 268435546, null, "", false, "Redo", null, 0, false, false, 6, 301989978, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Cut", null, 0, false, false, 0, 268435544, null, "", false, "Copy", null, 0, false, false, 1, 268435523, null, "", false, "Paste", null, 0, false, false, 2, 268435542, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Select All", null, 0, false, false, 4, 268435521, null, "", false, "Clear", null, 0, false, false, 3, 0, null, "", false ]
+
+[node name="HScrollBar3" type="HScrollBar" parent="Background/MarginContainer/TextEdit"]
+visible = false
+margin_top = 417.0
+margin_right = 336.0
+margin_bottom = 429.0
+max_value = 0.0
+
+[node name="VScrollBar3" type="VScrollBar" parent="Background/MarginContainer/TextEdit"]
+visible = false
+margin_left = 336.0
+margin_right = 348.0
+margin_bottom = 429.0
+max_value = 0.0
+
+[node name="Timer7" type="Timer" parent="Background/MarginContainer/TextEdit"]
+wait_time = 0.65
+
+[node name="Timer8" type="Timer" parent="Background/MarginContainer/TextEdit"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Timer9" type="Timer" parent="Background/MarginContainer/TextEdit"]
+wait_time = 0.05
+
+[node name="PopupMenu3" type="PopupMenu" parent="Background/MarginContainer/TextEdit"]
+items = [ "Cut", null, 0, false, false, 0, 268435544, null, "", false, "Copy", null, 0, false, false, 1, 268435523, null, "", false, "Paste", null, 0, false, false, 2, 268435542, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Select All", null, 0, false, false, 4, 268435521, null, "", false, "Clear", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Undo", null, 0, false, false, 5, 268435546, null, "", false, "Redo", null, 0, false, false, 6, 301989978, null, "", false ]
+
+[node name="Dica" type="PanelContainer" parent="."]
+margin_left = 1064.0
+margin_top = 464.0
+margin_right = 1432.0
+margin_bottom = 824.0
+custom_styles/panel = SubResource( 7 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Dica"]
+margin_right = 368.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 350, 300 )
+
+[node name="ColorRect" type="ColorRect" parent="Dica/MarginContainer"]
+margin_right = 368.0
+margin_bottom = 360.0
+rect_pivot_offset = Vector2( 176, 288 )
+color = Color( 0.470588, 0.454902, 0.419608, 1 )
+
+[node name="Rules" type="Label" parent="Dica/MarginContainer/ColorRect"]
+margin_right = 368.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 6 )
+text = "LEVEL RULES"
+align = 1
+valign = 1
+
+[node name="LabelExit" type="Label" parent="Dica/MarginContainer/ColorRect"]
+margin_left = 96.0
+margin_top = 80.0
+margin_right = 355.0
+margin_bottom = 133.0
+custom_fonts/font = ExtResource( 1 )
+text = "TOQUE PARA VENCER"
+align = 1
+valign = 1
+
+[node name="Exit" type="Sprite" parent="Dica/MarginContainer/ColorRect/LabelExit"]
+position = Vector2( -40, 24 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 11 )
+
+[node name="LabelHeart" type="Label" parent="Dica/MarginContainer/ColorRect"]
+margin_left = 64.0
+margin_top = 152.0
+margin_right = 370.0
+margin_bottom = 205.0
+custom_fonts/font = ExtResource( 1 )
+text = "TOQUE PARA
+DESTRUIR CRATES"
+align = 1
+valign = 1
+
+[node name="Heart" type="Sprite" parent="Dica/MarginContainer/ColorRect/LabelHeart"]
+position = Vector2( -8, 24 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 17 )
+
+[node name="LabelExit2" type="Label" parent="Dica/MarginContainer/ColorRect"]
+margin_left = 208.0
+margin_top = 232.0
+margin_right = 290.0
+margin_bottom = 285.0
+custom_fonts/font = ExtResource( 1 )
+text = "ABRE
+FECHA"
+valign = 1
+
+[node name="Green" type="Panel" parent="Dica/MarginContainer/ColorRect/LabelExit2"]
+margin_left = -40.0
+margin_top = -8.0
+margin_right = -8.0
+margin_bottom = 24.0
+custom_styles/panel = SubResource( 10 )
+
+[node name="Heart" type="Sprite" parent="Dica/MarginContainer/ColorRect/LabelExit2"]
+position = Vector2( -120, 24 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 18 )
+
+[node name="Red" type="Panel" parent="Dica/MarginContainer/ColorRect/LabelExit2"]
+margin_left = -40.0
+margin_top = 24.0
+margin_right = -8.0
+margin_bottom = 55.0
+custom_styles/panel = SubResource( 11 )
+
+[node name="DesclicaConsole" type="Button" parent="."]
+margin_right = 1024.0
+margin_bottom = 824.0
+custom_styles/hover = ExtResource( 10 )
+custom_styles/pressed = ExtResource( 10 )
+custom_styles/focus = ExtResource( 10 )
+custom_styles/disabled = ExtResource( 10 )
+custom_styles/normal = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Goblin" parent="." instance=ExtResource( 15 )]
+position = Vector2( 736, 200 )
+collision_mask = 0
+
+[node name="Muretas" type="Node" parent="."]
+
+[node name="Mureta1" parent="Muretas" instance=ExtResource( 16 )]
+position = Vector2( 288, 736 )
+
+[node name="Label" parent="Muretas/Mureta1" index="0"]
+margin_left = -56.0
+margin_right = 52.0
+text = ".mureta1{}"
+
+[node name="Mureta2" parent="Muretas" instance=ExtResource( 16 )]
+position = Vector2( 544, 736 )
+corInicio = "green"
+
+[node name="Label" parent="Muretas/Mureta2" index="0"]
+margin_left = -112.0
+margin_right = 113.0
+text = ".mureta2{color:green;}"
+
+[node name="Mureta3" parent="Muretas" instance=ExtResource( 16 )]
+position = Vector2( 800, 736 )
+corInicio = "yellow"
+
+[node name="Label" parent="Muretas/Mureta3" index="0"]
+text = ".mureta3{color:blue;}"
+
+[node name="Mureta4" parent="Muretas" instance=ExtResource( 16 )]
+position = Vector2( 992, 224 )
+corInicio = "yellow"
+
+[node name="Label" parent="Muretas/Mureta4" index="0"]
+text = ".mureta4{color:yellow;}"
+
+[node name="Heart" parent="." instance=ExtResource( 2 )]
+position = Vector2( 896, 624 )
+
+[node name="Crate" parent="." instance=ExtResource( 14 )]
+position = Vector2( 832, 352 )
+collision_layer = 32
+
+[node name="Moidy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 832, 440 )
+z_as_relative = false
+collision_layer = 2
+
+[connection signal="body_entered" from="Exit" to="Exit" method="_on_Exit_body_entered"]
+[connection signal="focus_entered" from="Background/MarginContainer/TextEdit" to="player" method="_on_TextEdit_focus_entered"]
+[connection signal="focus_exited" from="Background/MarginContainer/TextEdit" to="player" method="_on_TextEdit_focus_exited"]
+[connection signal="text_changed" from="Background/MarginContainer/TextEdit" to="." method="_on_TextEdit_text_changed"]
+[connection signal="text_changed" from="Background/MarginContainer/TextEdit" to="door" method="_on_TextEdit_text_changed"]
+[connection signal="text_changed" from="Background/MarginContainer/TextEdit" to="player" method="_on_TextEdit_text_changed"]
+[connection signal="text_changed" from="Background/MarginContainer/TextEdit" to="Goblin" method="_on_TextEdit_text_changed"]
+[connection signal="body_entered" from="Heart" to="Moidy" method="_on_Heart_body_entered"]
+
+[editable path="Goblin"]
+[editable path="Muretas/Mureta1"]
+[editable path="Muretas/Mureta2"]
+[editable path="Muretas/Mureta3"]
+[editable path="Muretas/Mureta4"]
