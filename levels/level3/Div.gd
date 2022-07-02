@@ -64,7 +64,6 @@ func get_container_size():
 
 
 func process_class(a):
-	print(a)
 	var tempFunctions = ["class"]
 	var count = 0
 	
@@ -80,6 +79,7 @@ func process_class(a):
 			
 			"align-items":
 				tempFunctions.append_array([a[i],a[i+1]])
+				align_items(a[i+1])
 				
 			
 			"flex-direction":
@@ -103,61 +103,156 @@ func justify_content(parament):
 				"column":
 					local = halfContainerY - boxSpaceY/2
 					increment = boxSizeY
-					basic_placement_X(local, increment, offSetY)
-				#alteração louca kk
-				"row-revese":
+					basic_placement_y(local, increment, offSetY)
+				
+				"row-reverse":
 					local = halfContainerX - boxSpaceX/2
-					for box in boxList:
-						box.position.x = local - offSetX
-						local += boxSizeX
+					increment = boxSizeX
+					basic_placement_x_reverse(local, increment, offSetX)
+				
+				"column-reverse":
+					local = halfContainerY - boxSpaceY/2
+					increment = boxSizeY
+					basic_placement_y_reverse(local, increment, offSetY)
 				
 				_:
 					local = halfContainerX - boxSpaceX/2
-					for box in boxList:
-						box.position.x = local - offSetX
-						local += boxSizeX
+					increment = boxSizeX
+					basic_placement_x(local, increment, offSetX)
 		
 		"flex-end":
-			local = containerSizeX - boxSpaceX
-			for box in boxList:
-				box.position.x = local - offSetX
-				local += boxSizeX
+			match flexDirection:
+				"column":
+					local = containerSizeY - boxSpaceY
+					increment = boxSizeY
+					basic_placement_y(local, increment, offSetY)
+				
+				"column-reverse":
+					increment = boxSizeY
+					basic_placement_y_reverse(local, increment, offSetY)
+				
+				"row-reverse":
+					increment = boxSizeX
+					basic_placement_x_reverse(local, increment, offSetX)
+				
+				_:
+					local = containerSizeX - boxSpaceX
+					increment = boxSizeX
+					basic_placement_x(local, increment, offSetX)
 		
 		"space-between":
-			increment = containerSizeX - boxSizeX
-			increment /= boxQuantidade - 1
-			for box in boxList:
-				box.position.x = local - offSetX
-				local += increment
+			match flexDirection:
+				"column":
+					increment = containerSizeY - boxSizeY
+					increment /= boxQuantidade - 1
+					basic_placement_y(local, increment, offSetY)
+				
+				"column-reverse":
+					increment = containerSizeY - boxSizeY
+					increment /= boxQuantidade - 1
+					basic_placement_y_reverse(local, increment, offSetY)
+				
+				"row-reverse":
+					increment = containerSizeX - boxSizeX
+					increment /= boxQuantidade - 1
+					basic_placement_x_reverse(local, increment, offSetX)
+				
+				_:
+					increment = containerSizeX - boxSizeX
+					increment /= boxQuantidade - 1
+					basic_placement_x(local, increment, offSetX)
 		
 		"space-around":
-			increment = containerSizeX - boxSpaceX
-			increment = increment/(boxQuantidade * 2)
-			increment += boxSizeX/2
-			for box in boxList:
-				local += increment
-				box.position.x = local - (offSetX + boxSizeX/2)
-				local += increment
+			match flexDirection:
+				"column":
+					increment = containerSizeY - boxSpaceY
+					increment = increment/(boxQuantidade * 2)
+					increment += boxSizeY/2
+					for box in boxList:
+						local += increment
+						box.position.y = local - (offSetY + boxSizeY/2)
+						local += increment
+				
+				"column-reverse":
+					increment = containerSizeY - boxSpaceY
+					increment = increment/(boxQuantidade * 2)
+					increment += boxSizeY/2
+					for box in range(len(boxList) - 1, -1, -1):
+						local += increment
+						boxList[box].position.y = local - (offSetY + boxSizeY/2)
+						local += increment
+				
+				"row-reverse":
+					increment = containerSizeX - boxSpaceX
+					increment = increment/(boxQuantidade * 2)
+					increment += boxSizeX/2
+					for box in range(len(boxList) - 1, -1, -1):
+						local += increment
+						boxList[box].position.x = local - (offSetX + boxSizeX/2)
+						local += increment
+				
+				_:
+					increment = containerSizeX - boxSpaceX
+					increment = increment/(boxQuantidade * 2)
+					increment += boxSizeX/2
+					for box in boxList:
+						local += increment
+						box.position.x = local - (offSetX + boxSizeX/2)
+						local += increment
 		
 		"space-evenly":
-			increment = containerSizeX - boxSpaceX
-			increment = increment/(boxQuantidade + 1)
-			local += increment + boxSizeX/2
-			for box in boxList:
-				box.position.x = local - (offSetX + boxSizeX/2)
-				local += increment + boxSizeX
+			match flexDirection:
+				"column":
+					increment = containerSizeY - boxSpaceY
+					increment = increment/(boxQuantidade + 1)
+					local += increment + boxSizeY/2
+					for box in boxList:
+						box.position.y = local - (offSetY + boxSizeY/2)
+						local += increment + boxSizeY
+				
+				"column-reverse":
+					increment = containerSizeY - boxSpaceY
+					increment = increment/(boxQuantidade + 1)
+					local += increment + boxSizeY/2
+					for box in range(len(boxList) - 1, -1, -1):
+						boxList[box].position.y = local - (offSetY + boxSizeY/2)
+						local += increment + boxSizeY
+				
+				"row-reverse":
+					increment = containerSizeX - boxSpaceX
+					increment = increment/(boxQuantidade + 1)
+					local += increment + boxSizeX/2
+					for box in range(len(boxList) - 1, -1, -1):
+						boxList[box].position.x = local - (offSetX + boxSizeX/2)
+						local += increment + boxSizeX
+				
+				_:
+					increment = containerSizeX - boxSpaceX
+					increment = increment/(boxQuantidade + 1)
+					local += increment + boxSizeX/2
+					for box in boxList:
+						box.position.x = local - (offSetX + boxSizeX/2)
+						local += increment + boxSizeX
 		
 		_:
 			match flexDirection:
 				"column":
-					for box in boxList:
-						box.position.y = local - offSetY
-						local += boxSizeY
+					increment = boxSizeY
+					basic_placement_y(local, increment, offSetY)
+				
+				"column-reverse":
+					local = containerSizeY - boxSpaceY
+					increment = boxSizeY
+					basic_placement_y_reverse(local, increment, offSetY)
+				
+				"row-reverse":
+					local = containerSizeX - boxSpaceX
+					increment = boxSizeX
+					basic_placement_x_reverse(local, increment, offSetX)
 				
 				_:
-					for box in boxList:
-						box.position.x = local - offSetX
-						local += boxSizeX
+					increment = boxSizeX
+					basic_placement_x(local, increment, offSetX)
 
 
 func align_items(parament):
@@ -172,25 +267,43 @@ func align_items(parament):
 					for box in boxQuantidade:
 						get_child(box).position.x = local - offSetX
 				
+				"column-reverse":
+					local = halfContainerX - boxSizeX/2
+					for box in boxQuantidade:
+						get_child(box).position.x = local - offSetX
+				
 				_:
 					local = halfContainerY - boxSizeY/2
 					for box in boxQuantidade:
 						get_child(box).position.y = local - offSetY
 		
 		"flex-end":
-			local = containerSizeY - boxSizeY
-			for box in boxList:
-				box.position.y = local - offSetY
+			match flexDirection:
+				"column":
+					local = containerSizeX - boxSizeX
+					basic_placement_x(local, increment, offSetX)
+				
+				"column-reverse":
+					local = containerSizeX - boxSizeX
+					basic_placement_x(local, increment, offSetX)
+				
+				_:
+					local = containerSizeY - boxSizeY
+					basic_placement_y(local, increment, offSetY)
 		
 		_:
 			match flexDirection:
 				"column":
-					for box in boxQuantidade:
-						get_child(box).position.x = local - offSetX
+					basic_placement_x(local, increment, offSetX)
+				
+				"column-reverse":
+					basic_placement_x_reverse(local, increment, offSetX)
+				
+				"row-reverse":
+					basic_placement_y_reverse(local, increment, offSetY)
 				
 				_:
-					for box in boxQuantidade:
-						get_child(box).position.y = local - offSetY
+					basic_placement_y(local, increment, offSetY)
 
 
 func add_boxes():
@@ -215,13 +328,25 @@ func sort_boxes():
 				boxList[j] = temp
 
 
-func basic_placement_X(local, increment, offSet):
+func basic_placement_x(local, increment, offSet):
 	for box in boxList:
-		boxList[box].position.y = local - offSet
+		box.position.x = local - offSet
 		local += increment
 
 
-func basic_placement_X_reverse(local, increment, offSet):
+func basic_placement_y(local, increment, offSet):
+	for box in boxList:
+		box.position.y = local - offSet
+		local += increment
+
+
+func basic_placement_x_reverse(local, increment, offSet):
+	for box in range(len(boxList) - 1, -1, -1):
+		boxList[box].position.x = local - offSet
+		local += increment
+
+
+func basic_placement_y_reverse(local, increment, offSet):
 	for box in range(len(boxList) - 1, -1, -1):
 		boxList[box].position.y = local - offSet
 		local += increment
@@ -234,7 +359,4 @@ func reload():
 	"align-items","FILL"
 	])
 	process_class(functions)
-
-
-
 
