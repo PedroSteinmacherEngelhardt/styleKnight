@@ -1,2 +1,2 @@
 # styleKnight
-Style knight is a game made with the intent of teaching some basics of CSS.
+Game developed by t5n group from catolica software engineering course.
